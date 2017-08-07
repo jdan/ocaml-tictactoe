@@ -1,0 +1,7 @@
+{
+  "name": "ocaml-chat",
+  "sources": [
+    "src/server/",
+    "src/client/"
+  ]
+}

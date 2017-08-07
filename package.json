@@ -1,0 +1,16 @@
+{
+  "devDependencies": {
+    "bs-platform": "^1.8.2",
+    "nodemon": "^1.11.0"
+  },
+  "scripts": {
+    "build": "bsb",
+    "watch": "bsb -w",
+    "clean": "bsb -clean",
+    "start": "node lib/js/src/server/index.js",
+    "dev": "nodemon lib/js/src/server/index.js"
+  },
+  "dependencies": {
+    "express": "^4.15.4"
+  }
+}
