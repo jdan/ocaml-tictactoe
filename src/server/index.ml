@@ -13,7 +13,9 @@ external express : unit -> server = "express" [@@bs.module]
 let app = express ();;
 let port = 3000;;
 
-get app "/" (fun _ -> fun res -> send res "Hello, world!");;
+get app "/" (fun _ -> fun res ->
+  send res (Template.layout "index" "Hello, world!")
+);;
 
 listen app port;;
 Js.log ("Server listening on port " ^ string_of_int(port) ^ "...")
