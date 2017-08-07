@@ -4,8 +4,11 @@ type res
 external send : res -> string -> unit = "send" [@@bs.send]
 
 type server
-external get : server -> string -> (req -> res -> unit) -> unit = "get" [@@bs.send]
-external post : server -> string -> (req -> res -> unit) -> unit = "post" [@@bs.send]
+external use : server -> 'a -> server = "use" [@@bs.send]
+external get : server -> string -> (req -> res -> unit) -> server
+  = "get" [@@bs.send]
+external post : server -> string -> (req -> res -> unit) -> server
+  = "post" [@@bs.send]
 
-external listen : server -> int -> unit = "listen" [@@bs.send]
+external listen : server -> int -> server = "listen" [@@bs.send]
 external express : unit -> server = "express" [@@bs.module]
