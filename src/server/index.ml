@@ -1,6 +1,9 @@
-open Types
+open Express
+open Socket
 
 let app = express ();;
+let http_server = HTTP.make_server app;;
+let io = IO.attach http_server;;
 
 use app (Session.cookie_session [%bs.obj {
   name = "ocaml-talk" ;
@@ -34,6 +37,12 @@ get app "/" (fun req -> fun res ->
     |> send res
 );;
 
+IO.on io "connection" (fun socket ->
+  Js.log "User connected";
+  Socket.on socket "disconnect" (fun _ -> Js.log "...and disconnected :(")
+);;
+
 let port = 3000;;
-listen app port;;
-Js.log ("Server listening on port " ^ string_of_int(port) ^ "...");;
+listen http_server port (fun _ ->
+  Js.log ("Server listening on port " ^ string_of_int(port) ^ "...")
+);;

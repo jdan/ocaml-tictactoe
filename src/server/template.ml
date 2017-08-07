@@ -22,6 +22,10 @@ let layout title body = "
 </head>
 <body>
   <main>" ^ body ^ "</main>
+  <script src=\"/socket.io/socket.io.js\"></script>
+  <script>
+    var socket = io();
+  </script>
 </body>
 </html>
 "

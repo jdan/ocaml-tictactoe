@@ -1,6 +1,7 @@
 {
   "name": "ocaml-chat",
   "sources": [
+    "src/FFI/",
     "src/server/"
   ]
 }
