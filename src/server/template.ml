@@ -24,7 +24,11 @@ let layout title body = "
   <main>" ^ body ^ "</main>
   <script src=\"/socket.io/socket.io.js\"></script>
   <script>
-    var socket = io();
+    var socket = io()
+    socket.on('sup', function(data) {
+      console.log(data)
+    })
+    socket.emit('hello')
   </script>
 </body>
 </html>

@@ -38,8 +38,12 @@ get app "/" (fun req -> fun res ->
 );;
 
 IO.on io "connection" (fun socket ->
-  Js.log "User connected";
-  Socket.on socket "disconnect" (fun _ -> Js.log "...and disconnected :(")
+  Js.log "Connected";
+  (* quick game of ping pong *)
+  Socket.on socket "hello" (fun _ ->
+    Socket.emit socket "sup" [%bs.obj {
+      from = "server" ;
+    }])
 );;
 
 let port = 3000;;
