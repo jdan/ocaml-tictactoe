@@ -1,5 +1,5 @@
 {
-  "name": "ocaml-chat",
+  "name": "ocaml-tictactoe",
   "sources": [
     "src/FFI/",
     "src/server/",
