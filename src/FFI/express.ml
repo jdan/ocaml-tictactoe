@@ -4,10 +4,10 @@ type res
 external send : res -> string -> unit = "send" [@@bs.send]
 
 type app
-external use : app -> 'a -> app = "use" [@@bs.send]
-external get : app -> string -> (req -> res -> unit) -> app
+external use : app -> 'a -> unit = "use" [@@bs.send]
+external get : app -> string -> (req -> res -> unit) -> unit
   = "get" [@@bs.send]
-external post : app -> string -> (req -> res -> unit) -> app
+external post : app -> string -> (req -> res -> unit) -> unit
   = "post" [@@bs.send]
 
 external express : unit -> app = "express" [@@bs.module]
@@ -18,4 +18,4 @@ module HTTP = struct
   external make_server : app -> server = "Server" [@@bs.module "http"]
 end
 
-external listen : HTTP.server -> int -> (unit -> unit) -> HTTP.server = "listen" [@@bs.send]
+external listen : HTTP.server -> int -> (unit -> unit) -> unit = "listen" [@@bs.send]
