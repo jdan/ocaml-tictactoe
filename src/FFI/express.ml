@@ -11,6 +11,7 @@ external post : app -> string -> (req -> res -> unit) -> app
   = "post" [@@bs.send]
 
 external express : unit -> app = "express" [@@bs.module]
+external express_static : string -> 'a = "static" [@@bs.module "express"]
 
 module HTTP = struct
   type server

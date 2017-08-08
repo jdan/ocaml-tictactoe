@@ -8,8 +8,8 @@
     "build": "bsb",
     "watch": "bsb -w",
     "clean": "bsb -clean",
-    "start": "node lib/js/src/server/index.js",
-    "dev": "nodemon lib/js/src/server/index.js",
+    "start": "node lib/js/src/server/server.js",
+    "dev": "nodemon lib/js/src/server/server.js",
     "deploy": "now --public"
   },
   "dependencies": {

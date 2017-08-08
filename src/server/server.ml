@@ -10,6 +10,8 @@ use app (Session.cookie_session [%bs.obj {
   keys = [ "secret" ] ;
 }]);;
 
+use app (express_static "lib/js/src/client")
+
 let get_visits req =
   let session = Session.for_ req in
   match Session.get session "visits" |> Js.Undefined.to_opt with
@@ -38,11 +40,11 @@ get app "/" (fun req -> fun res ->
 );;
 
 IO.on io "connection" (fun socket ->
-  Js.log "Connected";
   (* quick game of ping pong *)
-  Socket.on socket "hello" (fun _ ->
+  Socket.on socket "hello" (fun msg ->
+    Js.log msg;
     Socket.emit socket "sup" [%bs.obj {
-      from = "server" ;
+      from = "server"
     }])
 );;
 

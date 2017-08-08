@@ -2,6 +2,7 @@ open Express
 
 module Socket = struct
   type socket
+  external create : unit -> socket = "io" [@@bs.val]
   external on : socket -> string -> ('a -> unit) -> unit = "on" [@@bs.send]
   external emit : socket -> string -> 'a -> unit = "emit" [@@bs.send]
 end
