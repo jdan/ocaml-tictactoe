@@ -1,5 +1,6 @@
 open Express
 open Socket
+open Browserify
 
 let app = express ()
 let http_server = HTTP.make_server app
@@ -25,8 +26,6 @@ let () =
     keys = [ "secret" ] ;
   }]);
 
-  use app (express_static "lib/js/src/client");
-
   get app "/" (fun req -> fun res ->
     (* Increment our visits session variable *)
     incr_visits req;
@@ -38,6 +37,12 @@ let () =
         "Greetings!"
         ("<h1>You have visited " ^ times ^ "!</h1>")
       |> send res
+  );
+
+  get app "/client.js" (fun _ -> fun res ->
+    let b = browserify () in
+    add b "lib/js/src/client/client.js";
+    pipe (bundle b) res
   );
 
   IO.on io "connection" (fun socket ->

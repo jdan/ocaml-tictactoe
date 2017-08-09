@@ -2,6 +2,7 @@
   "name": "ocaml-tictactoe",
   "sources": [
     "src/FFI/",
+    "src/shared/",
     "src/server/",
     "src/client/"
   ]

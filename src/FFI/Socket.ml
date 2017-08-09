@@ -12,4 +12,3 @@ module IO = struct
   external attach : HTTP.server -> server = "socket.io" [@@bs.module]
   external on : server -> string -> (Socket.socket -> unit) -> unit = "on" [@@bs.send]
 end
-
