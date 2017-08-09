@@ -5,9 +5,9 @@ type board = square * square * square *
 
 type ('a, 'b) either = Left of 'a | Right of 'b
 
-let empty = (Empty, Empty, Empty, Empty, Empty, Empty, Empty, Empty, Empty)
+let empty : board = (Empty, Empty, Empty, Empty, Empty, Empty, Empty, Empty, Empty)
 
-let make_move (s1, s2, s3, s4, s5, s6, s7, s8, s9) slot c' =
+let make_move ((s1, s2, s3, s4, s5, s6, s7, s8, s9) : board) slot c' : (board, string) either =
   match slot with
   | 1 when s1 = Empty -> Left (c', s2, s3, s4, s5, s6, s7, s8, s9)
   | 2 when s2 = Empty -> Left (s1, c', s3, s4, s5, s6, s7, s8, s9)
@@ -22,7 +22,7 @@ let make_move (s1, s2, s3, s4, s5, s6, s7, s8, s9) slot c' =
           then Right "Invalid space specified"
           else Right "Space is occupied"
 
-let winner board = match board with
+let winner (board : board) = match board with
 | (a, b, c, _, _, _, _, _, _) when a = b && b = c -> Some a
 | (_, _, _, a, b, c, _, _, _) when a = b && b = c -> Some a
 | (_, _, _, _, _, _, a, b, c) when a = b && b = c -> Some a
@@ -43,13 +43,13 @@ let square_of_char = function
 | 'O' -> O
 | _ -> Empty
 
-let string_of_board (s1, s2, s3, s4, s5, s6, s7, s8, s9) =
+let string_of_board ((s1, s2, s3, s4, s5, s6, s7, s8, s9) : board) =
   List.fold_left
     (fun acc -> fun square -> acc ^ string_of_square square)
     ""
     [s1; s2; s3; s4; s5; s6; s7; s8; s9]
 
-let board_of_string str = (
+let board_of_string str : board = (
   square_of_char str.[0],
   square_of_char str.[1],
   square_of_char str.[2],
