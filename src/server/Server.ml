@@ -1,6 +1,5 @@
 open Express
 open Socket
-open Browserify
 
 let app = express ()
 let http_server = HTTP.make_server app
@@ -40,9 +39,8 @@ let () =
   );
 
   get app "/client.js" (fun _ -> fun res ->
-    let b = browserify () in
-    add b "lib/js/src/client/client.js";
-    pipe (bundle b) res
+    set res "Content-Type" "text/plain";
+    Rollup.bundle "lib/es6_global/src/client/client.js" res
   );
 
   IO.on io "connection" (fun socket ->

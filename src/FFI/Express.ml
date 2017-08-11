@@ -2,6 +2,7 @@ type req
 
 type res
 external send : res -> string -> unit = "send" [@@bs.send]
+external set : res -> string -> string -> unit = "set" [@@bs.send]
 
 type app
 external use : app -> 'a -> unit = "use" [@@bs.send]

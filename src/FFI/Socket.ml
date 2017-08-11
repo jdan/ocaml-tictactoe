@@ -5,6 +5,7 @@ module Socket = struct
   external create : unit -> socket = "io" [@@bs.val]
   external on : socket -> string -> ('a -> unit) -> unit = "on" [@@bs.send]
   external emit : socket -> string -> 'a -> unit = "emit" [@@bs.send]
+  external id : socket -> string = "id" [@@bs.get]
 end
 
 module IO = struct

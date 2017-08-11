@@ -24,6 +24,7 @@ let layout title body = "
   <main>" ^ body ^ "</main>
   <script src='/socket.io/socket.io.js'></script>
   <script src='/client.js'></script>
+  <script>client.main()</script>
 </body>
 </html>
 "
